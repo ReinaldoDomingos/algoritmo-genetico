@@ -1,17 +1,18 @@
-package algoritmo;
+package historico;
+
+import algoritmo.Individuo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AlgoritmoGenetico {
+public class AlgoritmoGenetico11 {
     private int geracao;
     private int tamanhoPopulacao;
     private Individuo melhorSolucao;
     private List<Individuo> populacao = new ArrayList<>();
-    private List<Individuo> melhoresCromossomos = new ArrayList<>();
 
-    public AlgoritmoGenetico(int tamanhoPopulacao) {
+    public AlgoritmoGenetico11(int tamanhoPopulacao) {
         this.tamanhoPopulacao = tamanhoPopulacao;
     }
 
@@ -59,7 +60,6 @@ public class AlgoritmoGenetico {
 
     public void visualizaGeracao() {
         Individuo melhor = this.populacao.get(0);
-        this.melhoresCromossomos.add(melhor);
         System.out.println("G: " + melhor.getGeracao() + " Valor: " + melhor.getNotaAvaliacao()
                 + " Espaço: " + melhor.getEspacoUsado() + " Cromossomo: " + melhor.getCromossomo());
     }
@@ -134,13 +134,5 @@ public class AlgoritmoGenetico {
 
     public void setPopulacao(List<Individuo> populacao) {
         this.populacao = populacao;
-    }
-
-    public List<Individuo> getMelhoresCromossomos() {
-        return melhoresCromossomos;
-    }
-
-    public void setMelhoresCromossomos(List<Individuo> melhoresCromossomos) {
-        this.melhoresCromossomos = melhoresCromossomos;
     }
 }
