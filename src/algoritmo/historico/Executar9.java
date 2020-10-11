@@ -1,12 +1,13 @@
-package historico;
+package algoritmo.historico;
 
+import algoritmo.AlgoritmoGenetico;
 import algoritmo.Individuo;
 import algoritmo.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar5 {
+public class Executar9 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -37,20 +38,16 @@ public class Executar5 {
 
         Double limite = 3.0;
 
-        Individuo individuo1 = new Individuo(espacos, valores, limite);
-        System.out.println("\nIndividuo 1 " + individuo1.getCromossomo());
-        individuo1.avaliacao();
-        System.out.println("Nota: " + individuo1.getNotaAvaliacao());
-        System.out.println("Espaço usado: " + individuo1.getEspacoUsado());
+        int tamanhoPopulacao = 20;
+        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
+        ag.inicializarPopulacao(espacos, valores, limite);
 
-        Individuo individuo2 = new Individuo(espacos, valores, limite);
-        System.out.println("\nIndividuo 2 " + individuo2.getCromossomo());
-        individuo2.avaliacao();
-        System.out.println("Nota: " + individuo2.getNotaAvaliacao());
-        System.out.println("Espaço usado: " + individuo2.getEspacoUsado());
+        for (Individuo individuo : ag.getPopulacao()) {
+            individuo.avaliacao();
+        }
+        ag.ordenarPopulacao();
+        ag.melhorIndividuo(ag.getPopulacao().get(0));
 
-        individuo1.crossover(individuo2);
-        individuo1.mutacao(0.05);
-        individuo2.mutacao(0.05);
+        System.out.println("Soma das avaliações: " + ag.somaAvaliacoes());
     }
 }

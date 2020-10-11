@@ -1,12 +1,12 @@
-package historico;
+package algoritmo.historico;
 
-import algoritmo.AlgoritmoGenetico;
+import algoritmo.Individuo;
 import algoritmo.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar11 {
+public class Executar5 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class Executar11 {
         listaProdutos.add(new Produto("Microondas LG", 0.0544, 429.90));
         listaProdutos.add(new Produto("Notebook Lenovo", 0.498, 1999.90));
 
-        List<Double> espacos = new ArrayList<>();
+        List<Double> espacos = new ArrayList<Double>();
         List<Double> valores = new ArrayList<>();
         List<String> nomes = new ArrayList<>();
 
@@ -36,19 +36,21 @@ public class Executar11 {
         }
 
         Double limite = 3.0;
-        int tamanhoPopulacao = 4;
-        double taxaMutacao = 0.05;
-        int numeroGeracoes = 3;
-        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
-        ag.inicializarPopulacao(espacos, valores, limite);
 
-        List<Integer> resultado = ag.resolver(taxaMutacao, numeroGeracoes, espacos, valores, limite);
+        Individuo individuo1 = new Individuo(espacos, valores, limite);
+        System.out.println("\nIndividuo 1 " + individuo1.getCromossomo());
+        individuo1.avaliacao();
+        System.out.println("Nota: " + individuo1.getNotaAvaliacao());
+        System.out.println("Espaço usado: " + individuo1.getEspacoUsado());
 
-        for (int i = 0; i < listaProdutos.size(); i++) {
-            if (resultado.get(i).equals(1)) {
-                Produto produto = listaProdutos.get(i);
-                System.out.println("Nome: " + produto.getNome());
-            }
-        }
+        Individuo individuo2 = new Individuo(espacos, valores, limite);
+        System.out.println("\nIndividuo 2 " + individuo2.getCromossomo());
+        individuo2.avaliacao();
+        System.out.println("Nota: " + individuo2.getNotaAvaliacao());
+        System.out.println("Espaço usado: " + individuo2.getEspacoUsado());
+
+        individuo1.crossover(individuo2);
+        individuo1.mutacao(0.05);
+        individuo2.mutacao(0.05);
     }
 }

@@ -1,12 +1,12 @@
-package historico;
+package algoritmo.historico;
 
-import algoritmo.Individuo;
+import algoritmo.AlgoritmoGenetico;
 import algoritmo.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar2 {
+public class Executar11 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class Executar2 {
         listaProdutos.add(new Produto("Microondas LG", 0.0544, 429.90));
         listaProdutos.add(new Produto("Notebook Lenovo", 0.498, 1999.90));
 
-        List<Double> espacos = new ArrayList<Double>();
+        List<Double> espacos = new ArrayList<>();
         List<Double> valores = new ArrayList<>();
         List<String> nomes = new ArrayList<>();
 
@@ -36,17 +36,18 @@ public class Executar2 {
         }
 
         Double limite = 3.0;
+        int tamanhoPopulacao = 4;
+        double taxaMutacao = 0.05;
+        int numeroGeracoes = 3;
+        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
+        ag.inicializarPopulacao(espacos, valores, limite);
 
-        Individuo individuo1 = new Individuo(espacos, valores, limite);
-        System.out.println("Espaços: " + individuo1.getEspacos());
-        System.out.println("Valores: " + individuo1.getValores());
-        System.out.println("Cromosssomos: " + individuo1.getCromossomo());
+        List<Integer> resultado = ag.resolver(taxaMutacao, numeroGeracoes, espacos, valores, limite);
 
-        System.out.println("\nComonentes da carga");
-        for (int i = 0; i < individuo1.getCromossomo().size(); i++) {
-            if (individuo1.getCromossomo().get(i) == 1) {
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            if (resultado.get(i).equals(1)) {
                 Produto produto = listaProdutos.get(i);
-                System.out.println("Nome: " + produto.getNome() + " R$" + produto.getValor());
+                System.out.println("Nome: " + produto.getNome());
             }
         }
     }

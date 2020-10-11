@@ -1,4 +1,4 @@
-package historico;
+package algoritmo.historico;
 
 import algoritmo.AlgoritmoGenetico;
 import algoritmo.Individuo;
@@ -7,7 +7,7 @@ import algoritmo.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar6 {
+public class Executar7 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -39,13 +39,19 @@ public class Executar6 {
         Double limite = 3.0;
 
         int tamanhoPopulacao = 20;
-        AlgoritmoGenetico algoritmoGenetico = new AlgoritmoGenetico(tamanhoPopulacao);
-        algoritmoGenetico.inicializarPopulacao(espacos, valores, limite);
+        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
+        ag.inicializarPopulacao(espacos, valores, limite);
 
-        for (int i = 0; i < algoritmoGenetico.getTamanhoPopulacao(); i++) {
-            Individuo individuo = algoritmoGenetico.getPopulacao().get(i);
+        for (Individuo individuo : ag.getPopulacao()) {
+            individuo.avaliacao();
+        }
+        ag.ordenarPopulacao();
+
+        for (int i = 0; i < ag.getTamanhoPopulacao(); i++) {
+            Individuo individuo = ag.getPopulacao().get(i);
             System.out.println("*** Individuo " + i + " ****\nEspaços = " + individuo.getEspacos()
-                    + "\nValores =" + individuo.getValores() + "\nCromossomo = " + individuo.getCromossomo());
+                    + "\nValores =" + individuo.getValores() + "\nCromossomo = " + individuo.getCromossomo()
+                    + "\nNota = " + individuo.getNotaAvaliacao() + " Espaço Usado =" + individuo.getEspacoUsado());
         }
     }
 }

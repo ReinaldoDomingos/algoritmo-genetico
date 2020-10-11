@@ -1,13 +1,12 @@
-package historico;
+package algoritmo.historico;
 
-import algoritmo.AlgoritmoGenetico;
 import algoritmo.Individuo;
 import algoritmo.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar8 {
+public class Executar3 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -38,18 +37,9 @@ public class Executar8 {
 
         Double limite = 3.0;
 
-        int tamanhoPopulacao = 20;
-        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
-        ag.inicializarPopulacao(espacos, valores, limite);
-
-        for (Individuo individuo : ag.getPopulacao()) {
-            individuo.avaliacao();
-        }
-        ag.ordenarPopulacao();
-        ag.melhorIndividuo(ag.getPopulacao().get(0));
-        Individuo melhorSolucao = ag.getMelhorSolucao();
-        System.out.println("Melhor solução para o problema: " + melhorSolucao.getCromossomo()
-                + " Nota: " + melhorSolucao.getNotaAvaliacao() + " Espaço usado: "
-                + melhorSolucao.getEspacoUsado());
+        Individuo individuo1 = new Individuo(espacos, valores, limite);
+        individuo1.avaliacao();
+        System.out.println("Nota: "+ individuo1.getNotaAvaliacao());
+        System.out.println("Espaço usado: "+ individuo1.getEspacoUsado());
     }
 }

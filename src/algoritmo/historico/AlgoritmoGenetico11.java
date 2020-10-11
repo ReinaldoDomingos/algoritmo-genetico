@@ -1,4 +1,4 @@
-package historico;
+package algoritmo.historico;
 
 import algoritmo.Individuo;
 

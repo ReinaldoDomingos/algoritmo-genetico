@@ -30,12 +30,10 @@ public class Executar {
 
         List<Double> espacos = new ArrayList<>();
         List<Double> valores = new ArrayList<>();
-        List<String> nomes = new ArrayList<>();
 
         for (Produto p : listaProdutos) {
             espacos.add(p.getEspaco());
             valores.add(p.getValor());
-            nomes.add(p.getNome());
         }
 
         Double limite = 10.0;

@@ -1,13 +1,11 @@
-package historico;
+package algoritmo.historico;
 
-import algoritmo.AlgoritmoGenetico;
-import algoritmo.Individuo;
 import algoritmo.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar9 {
+public class Executar1 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -26,28 +24,8 @@ public class Executar9 {
         listaProdutos.add(new Produto("Microondas LG", 0.0544, 429.90));
         listaProdutos.add(new Produto("Notebook Lenovo", 0.498, 1999.90));
 
-        List<Double> espacos = new ArrayList<Double>();
-        List<Double> valores = new ArrayList<>();
-        List<String> nomes = new ArrayList<>();
-
         for (Produto p : listaProdutos) {
-            espacos.add(p.getEspaco());
-            valores.add(p.getValor());
-            nomes.add(p.getNome());
+            System.out.println(p);
         }
-
-        Double limite = 3.0;
-
-        int tamanhoPopulacao = 20;
-        AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanhoPopulacao);
-        ag.inicializarPopulacao(espacos, valores, limite);
-
-        for (Individuo individuo : ag.getPopulacao()) {
-            individuo.avaliacao();
-        }
-        ag.ordenarPopulacao();
-        ag.melhorIndividuo(ag.getPopulacao().get(0));
-
-        System.out.println("Soma das avaliações: " + ag.somaAvaliacoes());
     }
 }

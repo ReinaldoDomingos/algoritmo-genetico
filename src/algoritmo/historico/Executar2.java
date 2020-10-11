@@ -1,4 +1,4 @@
-package historico;
+package algoritmo.historico;
 
 import algoritmo.Individuo;
 import algoritmo.Produto;
@@ -6,7 +6,7 @@ import algoritmo.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Executar4 {
+public class Executar2 {
     public static void main(String[] args) {
         List<Produto> listaProdutos = new ArrayList<>();
 
@@ -38,17 +38,16 @@ public class Executar4 {
         Double limite = 3.0;
 
         Individuo individuo1 = new Individuo(espacos, valores, limite);
-        System.out.println("\nIndividuo 1 " + individuo1.getCromossomo());
-        individuo1.avaliacao();
-        System.out.println("Nota: " + individuo1.getNotaAvaliacao());
-        System.out.println("Espaço usado: " + individuo1.getEspacoUsado());
+        System.out.println("Espaços: " + individuo1.getEspacos());
+        System.out.println("Valores: " + individuo1.getValores());
+        System.out.println("Cromosssomos: " + individuo1.getCromossomo());
 
-        Individuo individuo2 = new Individuo(espacos, valores, limite);
-        System.out.println("\nIndividuo 2 " + individuo2.getCromossomo());
-        individuo2.avaliacao();
-        System.out.println("Nota: " + individuo2.getNotaAvaliacao());
-        System.out.println("Espaço usado: " + individuo2.getEspacoUsado());
-
-        individuo1.crossover(individuo2);
+        System.out.println("\nComonentes da carga");
+        for (int i = 0; i < individuo1.getCromossomo().size(); i++) {
+            if (individuo1.getCromossomo().get(i) == 1) {
+                Produto produto = listaProdutos.get(i);
+                System.out.println("Nome: " + produto.getNome() + " R$" + produto.getValor());
+            }
+        }
     }
 }
